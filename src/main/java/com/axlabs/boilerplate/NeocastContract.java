@@ -3,10 +3,11 @@ package com.axlabs.boilerplate;
 import io.neow3j.devpack.ByteString;
 import io.neow3j.devpack.Storage;
 import io.neow3j.devpack.annotations.Permission;
-import io.neow3j.devpack.constants.NativeContract;
 import io.neow3j.devpack.contracts.OracleContract;
+import io.neow3j.devpack.annotations.Trust;
 
-@Permission(nativeContract = NativeContract.OracleContract)
+@Permission(contract = "*", methods = "*")
+@Trust(contract = "*")
 public class NeocastContract {
 
     // Use the OracleMakeRequest example to invoke the request method, and the
@@ -19,7 +20,7 @@ public class NeocastContract {
             String websiteUrl) {
         new OracleContract()
                 .request("https://neocast.blitzcrafthq.com/api/notifications/create?topicID=" + topicId + "&name="
-                        + name + "&description=" + description + "&mediaURL=" + mediaUrl + "&websiteURL=" + websiteUrl,
+                        + name + "&description=" + description + "&websiteURL=" + websiteUrl + "&mediaURL=" + mediaUrl,
                         "", "callback", null, 1);
     }
 
